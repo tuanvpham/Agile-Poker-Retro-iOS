@@ -14,6 +14,8 @@
 		B381EE2E21E9270100FC9E17 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B381EE2C21E9270100FC9E17 /* LaunchScreen.storyboard */; };
 		B381EE3921E9270100FC9E17 /* ACCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B381EE3821E9270100FC9E17 /* ACCTests.swift */; };
 		B381EE4421E9270100FC9E17 /* ACCUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B381EE4321E9270100FC9E17 /* ACCUITests.swift */; };
+		B3F80D5A21F53C99004E3FC9 /* Sessions.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3F80D5921F53C99004E3FC9 /* Sessions.storyboard */; };
+		B3F80D5E21F5401A004E3FC9 /* WelcomeSessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F80D5D21F5401A004E3FC9 /* WelcomeSessionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,8 @@
 		B381EE3F21E9270100FC9E17 /* ACCUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ACCUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B381EE4321E9270100FC9E17 /* ACCUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACCUITests.swift; sourceTree = "<group>"; };
 		B381EE4521E9270100FC9E17 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B3F80D5921F53C99004E3FC9 /* Sessions.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Sessions.storyboard; sourceTree = "<group>"; };
+		B3F80D5D21F5401A004E3FC9 /* WelcomeSessionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeSessionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +81,7 @@
 		B381EE1721E926FF00FC9E17 = {
 			isa = PBXGroup;
 			children = (
+				B3F80D5821F53C3C004E3FC9 /* Sessions */,
 				B381EE2221E926FF00FC9E17 /* ACC */,
 				B381EE3721E9270100FC9E17 /* ACCTests */,
 				B381EE4221E9270100FC9E17 /* ACCUITests */,
@@ -123,6 +128,15 @@
 				B381EE4521E9270100FC9E17 /* Info.plist */,
 			);
 			path = ACCUITests;
+			sourceTree = "<group>";
+		};
+		B3F80D5821F53C3C004E3FC9 /* Sessions */ = {
+			isa = PBXGroup;
+			children = (
+				B3F80D5921F53C99004E3FC9 /* Sessions.storyboard */,
+				B3F80D5D21F5401A004E3FC9 /* WelcomeSessionViewController.swift */,
+			);
+			path = Sessions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -230,6 +244,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B381EE2E21E9270100FC9E17 /* LaunchScreen.storyboard in Resources */,
+				B3F80D5A21F53C99004E3FC9 /* Sessions.storyboard in Resources */,
 				B381EE2B21E9270100FC9E17 /* Assets.xcassets in Resources */,
 				B381EE2921E926FF00FC9E17 /* Main.storyboard in Resources */,
 			);
@@ -256,6 +271,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3F80D5E21F5401A004E3FC9 /* WelcomeSessionViewController.swift in Sources */,
 				B381EE2621E926FF00FC9E17 /* ViewController.swift in Sources */,
 				B381EE2421E926FF00FC9E17 /* AppDelegate.swift in Sources */,
 			);
