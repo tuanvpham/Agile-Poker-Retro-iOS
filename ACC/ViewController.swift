@@ -58,7 +58,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             }
         }
         task.resume()
-        let ws = WebSocket("ws://localhost:8000/retro/Test")
+        let ws = WebSocket("ws://localhost:8000/retro/Test/1")
         ws.event.close = {(Code: Int, Reason: String, Clean: Bool) -> Void in print(Reason)}
         ws.event.open = {print("opened")
             //ws.send("application is")
