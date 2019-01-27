@@ -16,6 +16,8 @@
 		B381EE4421E9270100FC9E17 /* ACCUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B381EE4321E9270100FC9E17 /* ACCUITests.swift */; };
 		B3F80D5A21F53C99004E3FC9 /* Sessions.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3F80D5921F53C99004E3FC9 /* Sessions.storyboard */; };
 		B3F80D5E21F5401A004E3FC9 /* WelcomeSessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F80D5D21F5401A004E3FC9 /* WelcomeSessionViewController.swift */; };
+		B3F80D6121FBBB39004E3FC9 /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F80D6021FBBB39004E3FC9 /* WebSocket.swift */; };
+		B3F80D6421FBC2D0004E3FC9 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B3F80D6321FBC2D0004E3FC9 /* libz.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,8 @@
 		B381EE4521E9270100FC9E17 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B3F80D5921F53C99004E3FC9 /* Sessions.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Sessions.storyboard; sourceTree = "<group>"; };
 		B3F80D5D21F5401A004E3FC9 /* WelcomeSessionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeSessionViewController.swift; sourceTree = "<group>"; };
+		B3F80D6021FBBB39004E3FC9 /* WebSocket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocket.swift; sourceTree = "<group>"; };
+		B3F80D6321FBC2D0004E3FC9 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3F80D6421FBC2D0004E3FC9 /* libz.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,11 +86,13 @@
 		B381EE1721E926FF00FC9E17 = {
 			isa = PBXGroup;
 			children = (
+				B3F80D5F21FBB68B004E3FC9 /* Websockets */,
 				B3F80D5821F53C3C004E3FC9 /* Sessions */,
 				B381EE2221E926FF00FC9E17 /* ACC */,
 				B381EE3721E9270100FC9E17 /* ACCTests */,
 				B381EE4221E9270100FC9E17 /* ACCUITests */,
 				B381EE2121E926FF00FC9E17 /* Products */,
+				B3F80D6221FBC2D0004E3FC9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -137,6 +144,22 @@
 				B3F80D5D21F5401A004E3FC9 /* WelcomeSessionViewController.swift */,
 			);
 			path = Sessions;
+			sourceTree = "<group>";
+		};
+		B3F80D5F21FBB68B004E3FC9 /* Websockets */ = {
+			isa = PBXGroup;
+			children = (
+				B3F80D6021FBBB39004E3FC9 /* WebSocket.swift */,
+			);
+			path = Websockets;
+			sourceTree = "<group>";
+		};
+		B3F80D6221FBC2D0004E3FC9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B3F80D6321FBC2D0004E3FC9 /* libz.tbd */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -272,6 +295,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3F80D5E21F5401A004E3FC9 /* WelcomeSessionViewController.swift in Sources */,
+				B3F80D6121FBBB39004E3FC9 /* WebSocket.swift in Sources */,
 				B381EE2621E926FF00FC9E17 /* ViewController.swift in Sources */,
 				B381EE2421E926FF00FC9E17 /* AppDelegate.swift in Sources */,
 			);
@@ -450,6 +474,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = ACC/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -467,6 +492,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = ACC/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

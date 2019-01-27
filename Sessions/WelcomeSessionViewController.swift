@@ -17,9 +17,10 @@ class WelcomeSessionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         let data = UserDefaults.standard
+        
         displayEmail.text = data.string(forKey: "email")
         displayUsername.text = data.string(forKey: "username")
         displayToken.text = data.string(forKey: "token")

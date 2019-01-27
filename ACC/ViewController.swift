@@ -58,6 +58,19 @@ class ViewController: UIViewController, UITextFieldDelegate {
             }
         }
         task.resume()
+        let ws = WebSocket("ws://localhost:8000/retro/Test")
+        ws.event.close = {(Code: Int, Reason: String, Clean: Bool) -> Void in print(Reason)}
+        ws.event.open = {print("opened")
+            //ws.send("application is")
+            
+        }
+       
+        ws.event.message = {(message: Any) -> Void in
+            if let text = message as? String {
+                print("From Django: \(text)")
+            }
+        }
+       
         
         
 
