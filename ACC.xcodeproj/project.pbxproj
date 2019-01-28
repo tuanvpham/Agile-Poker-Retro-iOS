@@ -18,6 +18,9 @@
 		B3F80D5E21F5401A004E3FC9 /* WelcomeSessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F80D5D21F5401A004E3FC9 /* WelcomeSessionViewController.swift */; };
 		B3F80D6121FBBB39004E3FC9 /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F80D6021FBBB39004E3FC9 /* WebSocket.swift */; };
 		B3F80D6421FBC2D0004E3FC9 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B3F80D6321FBC2D0004E3FC9 /* libz.tbd */; };
+		B3F80D6F21FE71DC004E3FC9 /* SessionJoinTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F80D6E21FE71DC004E3FC9 /* SessionJoinTableViewController.swift */; };
+		B3F80D7221FE748C004E3FC9 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F80D7121FE748C004E3FC9 /* Models.swift */; };
+		B3F80D7421FE8D65004E3FC9 /* SessionJoinTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F80D7321FE8D65004E3FC9 /* SessionJoinTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +58,9 @@
 		B3F80D5D21F5401A004E3FC9 /* WelcomeSessionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeSessionViewController.swift; sourceTree = "<group>"; };
 		B3F80D6021FBBB39004E3FC9 /* WebSocket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocket.swift; sourceTree = "<group>"; };
 		B3F80D6321FBC2D0004E3FC9 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		B3F80D6E21FE71DC004E3FC9 /* SessionJoinTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionJoinTableViewController.swift; sourceTree = "<group>"; };
+		B3F80D7121FE748C004E3FC9 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		B3F80D7321FE8D65004E3FC9 /* SessionJoinTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionJoinTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +92,7 @@
 		B381EE1721E926FF00FC9E17 = {
 			isa = PBXGroup;
 			children = (
+				B3F80D7021FE72D9004E3FC9 /* Models */,
 				B3F80D5F21FBB68B004E3FC9 /* Websockets */,
 				B3F80D5821F53C3C004E3FC9 /* Sessions */,
 				B381EE2221E926FF00FC9E17 /* ACC */,
@@ -140,6 +147,7 @@
 		B3F80D5821F53C3C004E3FC9 /* Sessions */ = {
 			isa = PBXGroup;
 			children = (
+				B3F80D6B21FE6FB1004E3FC9 /* SessionJoin */,
 				B3F80D5921F53C99004E3FC9 /* Sessions.storyboard */,
 				B3F80D5D21F5401A004E3FC9 /* WelcomeSessionViewController.swift */,
 			);
@@ -160,6 +168,23 @@
 				B3F80D6321FBC2D0004E3FC9 /* libz.tbd */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B3F80D6B21FE6FB1004E3FC9 /* SessionJoin */ = {
+			isa = PBXGroup;
+			children = (
+				B3F80D6E21FE71DC004E3FC9 /* SessionJoinTableViewController.swift */,
+				B3F80D7321FE8D65004E3FC9 /* SessionJoinTableViewCell.swift */,
+			);
+			path = SessionJoin;
+			sourceTree = "<group>";
+		};
+		B3F80D7021FE72D9004E3FC9 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B3F80D7121FE748C004E3FC9 /* Models.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -295,9 +320,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3F80D5E21F5401A004E3FC9 /* WelcomeSessionViewController.swift in Sources */,
+				B3F80D6F21FE71DC004E3FC9 /* SessionJoinTableViewController.swift in Sources */,
 				B3F80D6121FBBB39004E3FC9 /* WebSocket.swift in Sources */,
+				B3F80D7221FE748C004E3FC9 /* Models.swift in Sources */,
 				B381EE2621E926FF00FC9E17 /* ViewController.swift in Sources */,
 				B381EE2421E926FF00FC9E17 /* AppDelegate.swift in Sources */,
+				B3F80D7421FE8D65004E3FC9 /* SessionJoinTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

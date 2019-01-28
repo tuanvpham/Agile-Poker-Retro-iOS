@@ -62,9 +62,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
         ws.event.close = {(Code: Int, Reason: String, Clean: Bool) -> Void in print(Reason)}
         ws.event.open = {print("opened")
             //ws.send("application is")
-            
+
         }
-       
+
         ws.event.message = {(message: Any) -> Void in
             if let text = message as? String {
                 print("From Django: \(text)")
@@ -89,7 +89,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")  // the request is JSON
         request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Accept")
         //let inpuT = usernamePass(email: "tuanvpham32@outlook.com", password: "Pviett#8613")
-        let inpuT = usernamePass(email: inputEmail.text! as String, password: inputPassword.text! as String)
+        let inpuT = Models.LoginInput(email: inputEmail.text! as String, password: inputPassword.text! as String)
         //print(inpuT)
         //print(input2)
         
@@ -99,7 +99,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         URLSession.shared.dataTask(with: request, completionHandler: { data, response, error -> Void in
             do{
                 let decoder = JSONDecoder()
-                let responseJson = try decoder.decode(loginReturn.self, from: data!)
+                let responseJson = try decoder.decode(Models.LoginOutput.self, from: data!)
                 DispatchQueue.main.async {
                     print(responseJson.email + "\n")
                     print(responseJson.username + "\n")
