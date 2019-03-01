@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B337300822221F6E0003D4EA /* SessionSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B337300722221F6E0003D4EA /* SessionSettingsViewController.swift */; };
 		B381EE2421E926FF00FC9E17 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B381EE2321E926FF00FC9E17 /* AppDelegate.swift */; };
 		B381EE2621E926FF00FC9E17 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B381EE2521E926FF00FC9E17 /* ViewController.swift */; };
 		B381EE2921E926FF00FC9E17 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B381EE2721E926FF00FC9E17 /* Main.storyboard */; };
@@ -41,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B337300722221F6E0003D4EA /* SessionSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionSettingsViewController.swift; sourceTree = "<group>"; };
 		B381EE2021E926FF00FC9E17 /* ACC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ACC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B381EE2321E926FF00FC9E17 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B381EE2521E926FF00FC9E17 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -89,6 +91,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B337300622221F1F0003D4EA /* SessionSettings */ = {
+			isa = PBXGroup;
+			children = (
+				B337300722221F6E0003D4EA /* SessionSettingsViewController.swift */,
+			);
+			path = SessionSettings;
+			sourceTree = "<group>";
+		};
 		B381EE1721E926FF00FC9E17 = {
 			isa = PBXGroup;
 			children = (
@@ -147,6 +157,7 @@
 		B3F80D5821F53C3C004E3FC9 /* Sessions */ = {
 			isa = PBXGroup;
 			children = (
+				B337300622221F1F0003D4EA /* SessionSettings */,
 				B3F80D6B21FE6FB1004E3FC9 /* SessionJoin */,
 				B3F80D5921F53C99004E3FC9 /* Sessions.storyboard */,
 				B3F80D5D21F5401A004E3FC9 /* WelcomeSessionViewController.swift */,
@@ -321,6 +332,7 @@
 			files = (
 				B3F80D5E21F5401A004E3FC9 /* WelcomeSessionViewController.swift in Sources */,
 				B3F80D6F21FE71DC004E3FC9 /* SessionJoinTableViewController.swift in Sources */,
+				B337300822221F6E0003D4EA /* SessionSettingsViewController.swift in Sources */,
 				B3F80D6121FBBB39004E3FC9 /* WebSocket.swift in Sources */,
 				B3F80D7221FE748C004E3FC9 /* Models.swift in Sources */,
 				B381EE2621E926FF00FC9E17 /* ViewController.swift in Sources */,

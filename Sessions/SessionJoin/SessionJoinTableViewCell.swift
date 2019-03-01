@@ -10,8 +10,9 @@ import UIKit
 
 class SessionJoinTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var displayText: UILabel!
-    
+    @IBOutlet weak var sessionName: UILabel!
+    @IBOutlet weak var sessionType: UILabel!
+    @IBOutlet weak var sessionOwner: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

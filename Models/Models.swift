@@ -24,8 +24,24 @@ class Models: NSObject, Codable{
         var username: String
     }
     
+    class session: NSObject, Codable{
+        var id: Int
+        var title: String
+        var session_type: String
+        var owner_id: Int
+        var owner_username: String
+        var owner_email: String
+    }
     
-    
+    class webSocketRetro: NSObject, Codable{
+        var item_type: String
+        var item_text: String
+        
+        init(type: String, text: String){
+            self.item_text = text
+            self.item_type = type
+        }
+    }
     
     
 }

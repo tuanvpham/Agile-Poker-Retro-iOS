@@ -10,12 +10,34 @@ import UIKit
 
 class SessionJoinTableViewController: UITableViewController {
 
-    var sampleArray = [String]()
+    var sessionArray = [Models.session]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        sampleArray += ["one", "two", "three"]
+        print("sending")
+        var request = URLRequest(url: URL(string : "http://127.0.0.1:8000/retro/Test/")!)
+        request.httpMethod = "GET"
+        request.setValue("application/json; charset=uft-8", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "GET"
+        request.setValue("application/json; charset=uft-8", forHTTPHeaderField: "Accept")
+        request.setValue("JWT " + UserDefaults.standard.string(forKey: "token")!, forHTTPHeaderField: "Authorization")
+        
+        URLSession.shared.dataTask(with: request, completionHandler: { data, response, error -> Void in
+            do{
+                let decoder = JSONDecoder()
+                self.sessionArray = try decoder.decode([Models.session].self, from: data!)
+                DispatchQueue.main.async {
+                    print(self.sessionArray[0].owner_email)
+                    print(self.sessionArray[1].owner_email)
+                    self.tableView.reloadData()
+                }
+            }catch{
+                print(error)
+            }
+        }).resume()
+                                   
+                                   
+                                   
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -32,7 +54,8 @@ class SessionJoinTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return sampleArray.count
+        print(sessionArray.count)
+        return sessionArray.count
     }
 
     
@@ -42,9 +65,10 @@ class SessionJoinTableViewController: UITableViewController {
             fatalError("Type was wrong")
         }
         
-        let thisString = sampleArray[indexPath.row]
-        cell.displayText.text = thisString
-        
+        let thisSession = sessionArray[indexPath.row]
+        cell.sessionType.text = thisSession.session_type == "R" ? "Retro Board" : "Planning Poker"
+        cell.sessionName.text = thisSession.title as String
+        cell.sessionOwner.text = thisSession.owner_username as String
         // Configure the cell...
 
         return cell

@@ -37,6 +37,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
         login()
         print("ran")
     }
+    @IBAction func bypassLogin(_ sender: Any) {
+        byPassLogin()
+    }
     @IBOutlet weak var inputEmail: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,10 +61,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
             }
         }
         task.resume()
-        let ws = WebSocket("ws://localhost:8000/retro/Test/1")
+        let ws = WebSocket("ws://localhost:8000/retro/Test/?abaeous@knights.ucf.edu")
         ws.event.close = {(Code: Int, Reason: String, Clean: Bool) -> Void in print(Reason)}
         ws.event.open = {print("opened")
-            //ws.send("application is")
+            //var jsonSend = Models.webSocketRetro(type: "what_went_well", text: "something went well")
+            //let encoder = JSONEncoder()
+            //var sendingThis = try! encoder.encode(jsonSend)
+            var sendingString =
+            "{\"itemType\" : \"what_went_well\", \"itemText\" : \"something went well\"}"
+            ws.send(sendingString)
 
         }
 
@@ -84,6 +92,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     
     func login(){
+        
+        inputEmail.text = "abaeous@knights.ucf.edu"
+        inputPassword.text = "onetwothree"
         var request = URLRequest(url: URL(string: "http://127.0.0.1:8000/users/")!)
         request.httpMethod = "POST"
         request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")  // the request is JSON
@@ -119,6 +130,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
             }
             
         }).resume()
+    }
+    
+    func byPassLogin(){
+        let viewController:UIViewController = UIStoryboard(name: "Sessions", bundle: nil).instantiateViewController(withIdentifier: "SessionSettings") as UIViewController
+        
+        self.present(viewController, animated: false, completion: nil)
     }
 
 }
