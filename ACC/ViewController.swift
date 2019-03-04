@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AuthenticationServices
 
 class ViewController: UIViewController, UITextFieldDelegate {
     
@@ -41,6 +42,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
         byPassLogin()
     }
     @IBOutlet weak var inputEmail: UITextField!
+    
+    var webAuthSession :ASWebAuthenticationSession?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -61,6 +65,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             }
         }
         task.resume()
+        /*
         let ws = WebSocket("ws://localhost:8000/retro/Test/?abaeous@knights.ucf.edu")
         ws.event.close = {(Code: Int, Reason: String, Clean: Bool) -> Void in print(Reason)}
         ws.event.open = {print("opened")
@@ -78,7 +83,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 print("From Django: \(text)")
             }
         }
-       
+       */
         
         
 
@@ -95,34 +100,32 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         inputEmail.text = "abaeous@knights.ucf.edu"
         inputPassword.text = "onetwothree"
-        var request = URLRequest(url: URL(string: "http://127.0.0.1:8000/users/")!)
-        request.httpMethod = "POST"
+        var request = URLRequest(url: URL(string: "http://127.0.0.1:8000/login/")!)
+        request.httpMethod = "GET"
         request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")  // the request is JSON
         request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Accept")
         //let inpuT = usernamePass(email: "tuanvpham32@outlook.com", password: "Pviett#8613")
-        let inpuT = Models.LoginInput(email: inputEmail.text! as String, password: inputPassword.text! as String)
+        //let inpuT = Models.LoginInput(email: inputEmail.text! as String, password: inputPassword.text! as String)
         //print(inpuT)
         //print(input2)
         
-        let encoder = JSONEncoder();
-        request.httpBody = try! encoder.encode(inpuT)
+        //let encoder = JSONEncoder();
+        //request.httpBody = try! encoder.encode(inpuT)
         
         URLSession.shared.dataTask(with: request, completionHandler: { data, response, error -> Void in
             do{
                 let decoder = JSONDecoder()
                 let responseJson = try decoder.decode(Models.LoginOutput.self, from: data!)
                 DispatchQueue.main.async {
-                    print(responseJson.email + "\n")
-                    print(responseJson.username + "\n")
-                    print(responseJson.token + "\n")
+                    print(responseJson.oauth_url + "\n")
+                    print(responseJson.oauth_token + "\n")
+                    print(responseJson.oauth_token_secret + "\n")
+
                     let usrDefaults = UserDefaults.standard
-                    usrDefaults.set(responseJson.email, forKey: "email")
-                    usrDefaults.set(responseJson.username, forKey: "username")
-                    usrDefaults.set(responseJson.token, forKey: "token")
-                    
-                    let viewController:UIViewController = UIStoryboard(name: "Sessions", bundle: nil).instantiateViewController(withIdentifier: "WelcomeSession") as UIViewController
-                    
-                    self.present(viewController, animated: false, completion: nil)
+                    usrDefaults.set(responseJson.oauth_url, forKey: "oauth_url")
+                    usrDefaults.set(responseJson.oauth_token, forKey: "oauth_token")
+                    usrDefaults.set(responseJson.oauth_token_secret, forKey: "oauth_token_secret")
+                    self.getAuthTokenWithWebLogin()
                 }
                 
             } catch{
@@ -137,6 +140,70 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         self.present(viewController, animated: false, completion: nil)
     }
+    
+    func getAuthTokenWithWebLogin() {
+        var urlString: String = UserDefaults.standard.string(forKey: "oauth_url")!
+        if let splitIndex = urlString.firstIndex(of: "&"){
+            urlString = String(urlString[..<splitIndex])
+        }
+        print(urlString)
+        
 
+        let authURL = URL(string: urlString + "&oauth_callback=acc://")
+        let callbackUrlScheme = ""
+        let authCallback = "http://localhost:8000/oauth_user?oauth_token_secret=" + UserDefaults.standard.string(forKey: "oauth_token_secret")!
+        
+        self.webAuthSession = ASWebAuthenticationSession.init(url: authURL!, callbackURLScheme: callbackUrlScheme, completionHandler: { (callBack:URL?, error:Error?) in
+            
+            // handle auth response
+            guard error == nil, let successURL = callBack else {
+                return
+            }
+            self.finalizeLoginUsingToken(oauth_token: UserDefaults.standard.string(forKey: "oauth_token")!, oauth_secret: UserDefaults.standard.string(forKey: "oauth_token_secret")!)
+ 
+        })
+        
+        // Kick it off
+        self.webAuthSession?.start()
+
+    }
+    
+    func finalizeLoginUsingToken(oauth_token: String, oauth_secret: String){
+        let bodyInput = Models.jiraAuthInput(token: oauth_token, secret: oauth_secret)
+        var request = URLRequest(url: URL(string: "http://127.0.0.1:8000/oauth_user/")!)
+        request.httpMethod = "POST"
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")  // the request is JSON
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Accept")
+        let encoder = JSONEncoder()
+        request.httpBody = try! encoder.encode(bodyInput)
+        
+        URLSession.shared.dataTask(with: request, completionHandler: { data, response, error -> Void in
+            do{
+                let decoder = JSONDecoder()
+                let responseJson = try decoder.decode(Models.jiraAuthOutput.self, from: data!)
+                DispatchQueue.main.async {
+                    print(responseJson.message + "\n")
+                    print(responseJson.token + "\n")
+                    print(responseJson.email + "\n")
+                    print(responseJson.username + "\n")
+                    print(responseJson.access_token + "\n")
+                    print(responseJson.secret_access_token + "\n")
+                    
+                    let usrDefaults = UserDefaults.standard
+                    usrDefaults.set(responseJson.token, forKey: "token")
+                    usrDefaults.set(responseJson.access_token, forKey: "access_token")
+                    usrDefaults.set(responseJson.email, forKey: "email")
+                    usrDefaults.set(responseJson.username, forKey: "username")
+                    
+                    let viewController:UIViewController = UIStoryboard(name: "Sessions", bundle: nil).instantiateViewController(withIdentifier: "WelcomeSession") as UIViewController
+                    
+                    self.present(viewController, animated: false, completion: nil)
+                }
+                
+            } catch{
+                print(error)
+            }
+            
+        }).resume()
+    }
 }
-

@@ -19,9 +19,29 @@ class Models: NSObject, Codable{
     }
     
     class LoginOutput: NSObject, Codable{
+        var oauth_token: String
+        var oauth_token_secret: String
+        var oauth_url: String
+        var message: String
+    }
+    
+    class jiraAuthOutput: NSObject, Codable{
+        var message: String
         var token: String
         var email: String
         var username: String
+        var access_token: String
+        var secret_access_token: String
+    }
+    
+    class jiraAuthInput: NSObject, Codable{
+        var oauth_token: String
+        var oauth_token_secret: String
+        
+        init(token: String, secret: String){
+            self.oauth_token = token
+            self.oauth_token_secret = secret
+        }
     }
     
     class session: NSObject, Codable{
