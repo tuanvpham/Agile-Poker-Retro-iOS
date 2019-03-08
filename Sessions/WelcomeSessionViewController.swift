@@ -14,7 +14,9 @@ class WelcomeSessionViewController: UIViewController {
     
     @IBOutlet weak var displayUsername: UILabel!
     @IBOutlet weak var displayToken: UILabel!
-    
+    @IBAction func logOut(_ sender: Any) {
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,6 +27,8 @@ class WelcomeSessionViewController: UIViewController {
         displayUsername.text = data.string(forKey: "username")
         displayToken.text = data.string(forKey: "token")
     }
+    
+    
     
 
     /*
