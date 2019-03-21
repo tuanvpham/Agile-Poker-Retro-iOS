@@ -15,7 +15,7 @@ class WelcomeSessionViewController: UIViewController {
     @IBOutlet weak var displayUsername: UILabel!
     @IBOutlet weak var displayToken: UILabel!
     @IBAction func logOut(_ sender: Any) {
-        
+        performLogout()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +28,22 @@ class WelcomeSessionViewController: UIViewController {
         displayToken.text = data.string(forKey: "token")
     }
     
+    func performLogout(){
+        //let cookieJar = HTTPCookieStorage.shared
+        //cookieJar.removeCookies(since: Date.distantPast)
+        var libraryPath : String = FileManager().urls(for: .libraryDirectory, in: .userDomainMask).first!.path
+        libraryPath += "/Cookies"
+        do {
+            try FileManager.default.removeItem(atPath: libraryPath)
+        } catch {
+            print("error")
+        }
+        URLCache.shared.removeAllCachedResponses()
+        
+        let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainView") as UIViewController
+        
+        self.present(viewController, animated: false, completion: nil)
+    }
     
     
 

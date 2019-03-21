@@ -65,25 +65,63 @@ class ViewController: UIViewController, UITextFieldDelegate {
             }
         }
         task.resume()
-        /*
-        let ws = WebSocket("ws://localhost:8000/retro/Test/?abaeous@knights.ucf.edu")
+    
+        let ws = WebSocket("ws://localhost:8000/lobby/title/?abaeous@knights.ucf.edu")
+        print("testing")
         ws.event.close = {(Code: Int, Reason: String, Clean: Bool) -> Void in print(Reason)}
-        ws.event.open = {print("opened")
-            //var jsonSend = Models.webSocketRetro(type: "what_went_well", text: "something went well")
-            //let encoder = JSONEncoder()
-            //var sendingThis = try! encoder.encode(jsonSend)
-            var sendingString =
-            "{\"itemType\" : \"what_went_well\", \"itemText\" : \"something went well\"}"
-            ws.send(sendingString)
+        ws.event.open = {
+            print("opened")
+            var jsonSend = Models.lobby()
+            jsonSend.has_joined = "abaeous@knights.ucf.edu"
+            jsonSend.player = "abaeous@knights.ucf.edu"
+            let encoder = JSONEncoder()
+            var sendingThis = try! encoder.encode(jsonSend)
+            //var sendingString = "{\"itemType\" : \"what_went_well\", \"itemText\" : \"something went well\"}"
+            let formatedJson = String(data: sendingThis, encoding: String.Encoding.utf8)
+            ws.send(formatedJson)
+            //ws.send("{\"test\":\"something\"}")
 
         }
 
         ws.event.message = {(message: Any) -> Void in
+            print("some message")
             if let text = message as? String {
+                print("something received")
                 print("From Django: \(text)")
             }
         }
-       */
+ 
+//        var ws: WebSocket? = nil
+//        ws = WebSocket("ws://localserver:8000/lobby/title/?abaeous@knights.ucf.edu")
+//        ws!.event.close = {(Code: Int, Reason: String, Clean: Bool) -> Void in print(Reason)}
+//        ws!.event.open = {
+//            print("opened")
+//            let sendThisUserJoined = Models.lobby()
+//            sendThisUserJoined.has_joined = "abaeous@knights.ucf.edu"
+//            sendThisUserJoined.player = "abaeous@knights.ucf.edu"
+//            let encoder = JSONEncoder()
+//            let sendingThis = try! encoder.encode(sendThisUserJoined)
+//            //            var sendingString = "{\"itemType\" : \"what_went_well\", \"itemText\" : \"something went well\"}"
+//            let formatedJson = String(data: sendingThis, encoding: String.Encoding.utf8)
+//            ws!.send(formatedJson)
+//        }
+//
+//        ws!.event.message = {(message: Any?) throws -> Void in
+//            print("some message")
+//            let decoder = JSONDecoder()
+//            let decodedMessage = try! decoder.decode(Models.lobby.self, from: message as! Data)
+//            catch{
+//                fatalError("this is bullshit")
+//            }
+//            switch decodedMessage.type {
+//            case "has_joined":
+//                print(decodedMessage.type)
+//            default:
+//                print("this type isn't valid")
+//            }
+//
+//        }
+        
         
         
 
@@ -195,7 +233,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     usrDefaults.set(responseJson.email, forKey: "email")
                     usrDefaults.set(responseJson.username, forKey: "username")
                     
-                    let viewController:UIViewController = UIStoryboard(name: "Sessions", bundle: nil).instantiateViewController(withIdentifier: "WelcomeSession") as UIViewController
+                    let viewController:UIViewController = UIStoryboard(name: "Sessions", bundle: nil).instantiateViewController(withIdentifier: "SessionNavigation") as UIViewController
                     
                     self.present(viewController, animated: false, completion: nil)
                 }
