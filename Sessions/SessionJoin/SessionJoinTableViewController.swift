@@ -11,11 +11,12 @@ import UIKit
 class SessionJoinTableViewController: UITableViewController {
 
     var sessionArray = [Models.session]()
+    var cellSession: Models.session?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print("sending")
-        var request = URLRequest(url: URL(string : "http://127.0.0.1:8000/retro/Test/")!)
+        var request = URLRequest(url: URL(string : "http://127.0.0.1:8000/sessions/")!)
         request.httpMethod = "GET"
         request.setValue("application/json; charset=uft-8", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "GET"
@@ -27,8 +28,9 @@ class SessionJoinTableViewController: UITableViewController {
                 let decoder = JSONDecoder()
                 self.sessionArray = try decoder.decode([Models.session].self, from: data!)
                 DispatchQueue.main.async {
-                    print(self.sessionArray[0].owner_email)
-                    print(self.sessionArray[1].owner_email)
+                    for session in self.sessionArray{
+                        print(session.owner_email)
+                    }
                     self.tableView.reloadData()
                 }
             }catch{
@@ -66,13 +68,53 @@ class SessionJoinTableViewController: UITableViewController {
         }
         
         let thisSession = sessionArray[indexPath.row]
+        //cell.cellSession = thisSession
         cell.sessionType.text = thisSession.session_type == "R" ? "Retro Board" : "Planning Poker"
         cell.sessionName.text = thisSession.title as String
         cell.sessionOwner.text = thisSession.owner_username as String
-        // Configure the cell...
-
+        cell.delegate = self
+        /*
+        if(thisSession.session_type == "R"){
+            cell.join.addTarget(self, action: #selector(connectToRetroSession), for: .touchUpInside)
+        }else{
+            cell.join.addTarget(self, action: #selector(connectToPokerSession), for: .touchUpInside)
+        }
+        */
         return cell
     }
+    
+    @objc func connectToPokerSession(){
+        print("poker")
+            self.performSegue(withIdentifier: "jumpToPoker", sender: self)
+    }
+    
+    @objc func connectToRetroSession(){
+        print("retro")
+        self.performSegue(withIdentifier: "jumpToRetro", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print(self.cellSession!.title + " preparing")
+        if(segue.identifier == "jumpToRetro"){
+            if let nextViewController = segue.destination as? RetroSessionViewController {
+                nextViewController.settings = Models.session()
+                nextViewController.settings = self.cellSession
+                nextViewController.settings!.owner_email = UserDefaults.standard.string(forKey: "email")!
+                print(nextViewController.settings!.owner_username)
+                print(nextViewController.settings!.title)
+                print(nextViewController.settings!.session_type)
+            }
+        }
+    
+        else{
+            if let nextViewController = segue.destination as? PokerSessionViewController {
+                nextViewController.settings = self.cellSession
+            }
+        }
+ 
+    }
+    
+
     
 
     /*
@@ -120,4 +162,11 @@ class SessionJoinTableViewController: UITableViewController {
     }
     */
 
+}
+
+extension SessionJoinTableViewController: SessionJoinTableViewCellDelegate{
+    func didJoin(session: Models.session) {
+        cellSession = session
+        connectToRetroSession()
+    }
 }

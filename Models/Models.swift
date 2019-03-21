@@ -51,16 +51,39 @@ class Models: NSObject, Codable{
         var owner_id: Int
         var owner_username: String
         var owner_email: String
+        //var description: String
+        //can't see descriptions due to override issues
+        
+        override init(){
+            id = 0
+            title = ""
+            session_type = ""
+            owner_id = 0
+            owner_username = ""
+            owner_email = ""
+        }
     }
     
     class webSocketRetro: NSObject, Codable{
-        var item_type: String
-        var item_text: String
+        var itemType: String
+        var itemText: String
         
         init(type: String, text: String){
-            self.item_text = text
-            self.item_type = type
+            self.itemText = text
+            self.itemType = type
         }
+    }
+    
+    class lobby: NSObject, Codable{
+        //message type
+        var type: String?
+        var exit_game: String?
+        var display_retro: String?
+        var cancel_game: String?
+        var start_game: String?
+        var has_joined: String?
+        var player: String?
+        
     }
     
     

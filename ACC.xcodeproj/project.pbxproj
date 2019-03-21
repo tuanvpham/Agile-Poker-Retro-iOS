@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B30C52B2223A017B005F10E3 /* RetroSessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30C52B1223A017B005F10E3 /* RetroSessionViewController.swift */; };
+		B30C52B4223A0198005F10E3 /* PokerSessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30C52B3223A0198005F10E3 /* PokerSessionViewController.swift */; };
 		B337300822221F6E0003D4EA /* SessionSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B337300722221F6E0003D4EA /* SessionSettingsViewController.swift */; };
 		B381EE2421E926FF00FC9E17 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B381EE2321E926FF00FC9E17 /* AppDelegate.swift */; };
 		B381EE2621E926FF00FC9E17 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B381EE2521E926FF00FC9E17 /* ViewController.swift */; };
@@ -42,6 +44,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B30C52B1223A017B005F10E3 /* RetroSessionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetroSessionViewController.swift; sourceTree = "<group>"; };
+		B30C52B3223A0198005F10E3 /* PokerSessionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerSessionViewController.swift; sourceTree = "<group>"; };
 		B337300722221F6E0003D4EA /* SessionSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionSettingsViewController.swift; sourceTree = "<group>"; };
 		B381EE2021E926FF00FC9E17 /* ACC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ACC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B381EE2321E926FF00FC9E17 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -91,6 +95,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B30C52AF223A0129005F10E3 /* RetroSesion */ = {
+			isa = PBXGroup;
+			children = (
+				B30C52B1223A017B005F10E3 /* RetroSessionViewController.swift */,
+			);
+			path = RetroSesion;
+			sourceTree = "<group>";
+		};
+		B30C52B0223A013E005F10E3 /* PokerSession */ = {
+			isa = PBXGroup;
+			children = (
+				B30C52B3223A0198005F10E3 /* PokerSessionViewController.swift */,
+			);
+			path = PokerSession;
+			sourceTree = "<group>";
+		};
 		B337300622221F1F0003D4EA /* SessionSettings */ = {
 			isa = PBXGroup;
 			children = (
@@ -157,6 +177,8 @@
 		B3F80D5821F53C3C004E3FC9 /* Sessions */ = {
 			isa = PBXGroup;
 			children = (
+				B30C52B0223A013E005F10E3 /* PokerSession */,
+				B30C52AF223A0129005F10E3 /* RetroSesion */,
 				B337300622221F1F0003D4EA /* SessionSettings */,
 				B3F80D6B21FE6FB1004E3FC9 /* SessionJoin */,
 				B3F80D5921F53C99004E3FC9 /* Sessions.storyboard */,
@@ -330,7 +352,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B30C52B2223A017B005F10E3 /* RetroSessionViewController.swift in Sources */,
 				B3F80D5E21F5401A004E3FC9 /* WelcomeSessionViewController.swift in Sources */,
+				B30C52B4223A0198005F10E3 /* PokerSessionViewController.swift in Sources */,
 				B3F80D6F21FE71DC004E3FC9 /* SessionJoinTableViewController.swift in Sources */,
 				B337300822221F6E0003D4EA /* SessionSettingsViewController.swift in Sources */,
 				B3F80D6121FBBB39004E3FC9 /* WebSocket.swift in Sources */,
